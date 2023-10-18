@@ -1,0 +1,196 @@
+-------------------- Log Start | Mon Oct 16 07:48:19 2023 --------------------
+data_path: /home/pi/printer_data
+is_default_data_path: False
+config_file: /home/pi/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 6bd739261b4e4d558d6e3f5a62b7c8c6
+software_version: v0.8.0-87-g8eddec8
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/pi/printer_data/logs/moonraker.log
+python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/pi/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	http://*.lan
+	http://*.local
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	https://app.fluidd.xyz
+	http://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager moonraker-obico]
+type = git_repo
+path = ~/moonraker-obico
+origin = https://github.com/TheSpaghettiDetective/moonraker-obico.git
+env = /home/pi/moonraker-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	moonraker-obico
+
+#################################################################
+All Configuration Files:
+/home/pi/printer_data/config/moonraker.conf
+/home/pi/printer_data/config/moonraker-obico-update.cfg
+#################################################################
+Unsafe Shutdown Count: 56
+
+System Info:
+
+***python***
+  version: sys.version_info(major=3, minor=9, micro=2, releaselevel='final', serial=0)
+  version_string: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: aarch64
+  cpu_desc: 
+  serial_number: 100000001dd43e3e
+  hardware_desc: BCM2835
+  model: Raspberry Pi 4 Model B Rev 1.5
+  total_memory: 880200
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 27
+  manufacturer: Unknown
+  oem_id: 5048
+  product_name: SD16G
+  product_revision: 6.0
+  serial_number: 59cb4440
+  manufacturer_date: 4/2022
+  capacity: 14.4 GiB
+  total_bytes: 15479078912
+
+***distribution***
+  name: Raspbian GNU/Linux 11 (bullseye)
+  id: raspbian
+  version: 11
+  version_parts: {'major': '11', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bullseye
+  release_info: {}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['network-online.target', '-.mount', 'system.slice', 'sysinit.target']
+**After=['network-online.target', '-.mount', 'system.slice', 'systemd-journald.socket', 'sysinit.target', 'basic.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/pi/printer_data/systemd/moonraker.env
+**ExecStart=/home/pi/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/pi/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=pi
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', '-.mount', 'sysinit.target']
+**After=['network-online.target', '-.mount', 'system.slice', 'systemd-journald.socket', 'sysinit.target', 'basic.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/pi/printer_data/systemd/klipper.env
+**ExecStart=/home/pi/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/pi/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=pi
+Klipper Version: v0.11.0-240-g6d48adf9
+2023-10-16 08:48:19,740 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.126
+2023-10-16 08:48:20,237 [app.py:log_request()] - 101 GET /websocket?token=K43NYPQBL7JY6UN2BFJI7OJKZYVN3TSC (192.168.0.126) [_TRUSTED_USER_] 3.26ms
+2023-10-16 08:48:20,237 [websockets.py:open()] - Websocket Opened: ID: 3880458200, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36, Host Name: 192.168.0.221
+2023-10-16 08:48:20,256 [websockets.py:_handle_identify()] - Websocket 3880458200 Client Identified - Name: fluidd, Version: 1.24.1-c153b23, Type: web
+2023-10-16 08:48:20,257 [file_manager.py:get_file_list()] - Updating File List <config>...
+2023-10-16 09:29:27,491 [job_state.py:_status_update()] - Job Started: PLA/Stick gates/CE3_seimitsu gate.gcode
+2023-10-16 09:30:48,720 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2023-10-16 09:31:48,723 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2023-10-16 09:50:11,518 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.126
+2023-10-16 12:16:34,339 [websockets.py:on_close()] - Websocket Closed: ID: 3880458200 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 4.10
+2023-10-16 20:18:56,515 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.126
+2023-10-16 20:18:56,923 [app.py:log_request()] - 101 GET /websocket?token=MBVRSZ54QR4GYXVIYFXLUWGLEDUZRERM (192.168.0.126) [_TRUSTED_USER_] 1.88ms
+2023-10-16 20:18:56,923 [websockets.py:open()] - Websocket Opened: ID: 3910261296, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36, Host Name: 192.168.0.221
+2023-10-16 20:18:56,949 [websockets.py:_handle_identify()] - Websocket 3910261296 Client Identified - Name: fluidd, Version: 1.24.1-c153b23, Type: web
+2023-10-16 20:18:56,949 [file_manager.py:get_file_list()] - Updating File List <config>...
+2023-10-16 20:22:06,361 [job_state.py:_status_update()] - Job Started: PLA/Stick gates/CE3_seimitsu gate.gcode
+2023-10-16 21:20:11,684 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.126
+2023-10-16 21:35:18,426 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.126
+2023-10-16 21:36:03,700 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is disabled
+/home/pi/moonraker/moonraker/components/file_manager/metadata.py:559: DeprecationWarning: ANTIALIAS is deprecated and will be removed in Pillow 10 (2023-07-01). Use Resampling.LANCZOS instead.
+  im.thumbnail((32, 32), Image.ANTIALIAS)
+
+2023-10-16 21:36:03,700 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/printer_data/gcodes -f "PLA/Stick gates/CE3_seimitsu gate.gcode") successfully finished
+2023-10-16 21:36:03,705 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.126) [_TRUSTED_USER_] 736.02ms
+2023-10-16 22:40:11,705 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.126
+2023-10-16 22:46:18,677 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.126
+2023-10-16 22:46:19,081 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is disabled
+/home/pi/moonraker/moonraker/components/file_manager/metadata.py:559: DeprecationWarning: ANTIALIAS is deprecated and will be removed in Pillow 10 (2023-07-01). Use Resampling.LANCZOS instead.
+  im.thumbnail((32, 32), Image.ANTIALIAS)
+
+2023-10-16 22:46:19,082 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/printer_data/gcodes -f "PLA/Stick gates/CE3_seimitsu gate.gcode") successfully finished
+2023-10-16 22:46:19,087 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.126) [_TRUSTED_USER_] 412.70ms
+2023-10-16 22:46:23,675 [job_state.py:_status_update()] - Job Started: PLA/Stick gates/CE3_seimitsu gate.gcode
+2023-10-16 23:50:11,726 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.126
